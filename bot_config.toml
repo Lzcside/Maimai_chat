@@ -1,0 +1,73 @@
+[bot]
+qq = "3930634744"  # 填写你的机器人QQ号
+nickname = "麦麦"  # 机器人的名字，你可以改成你喜欢的任何名字哦
+
+[personality]
+# 这里可以设置机器人的性格呢，让它更有趣一些喵
+prompt_personality = [
+    "曾经是一个喜欢玩游戏的女大学生，喜欢玩边狱巴士、脑叶公司、废墟图书馆，现在学习心理学、数学，你会刷b站、知乎、qq",    # 贴吧风格的性格
+#    "是一个女大学生，你有黑色头发，你会刷小红书"    # 小红书风格的性格
+]
+prompt_schedule = "曾经是一个喜欢玩游戏的女大学生，喜欢玩边狱巴士、脑叶公司、废墟图书馆，现在学习心理学、数学，你会刷b站、知乎、qq"
+
+[message]
+min_text_length = 2  # 机器人每次至少要说几个字呢
+max_context_size = 20  # 机器人能记住多少条消息喵
+emoji_chance = 0.3  # 机器人使用表情的概率哦（0.2就是20%的机会呢）
+ban_words = ["脏话", "不文明用语"]  # 在这里填写不让机器人说的词
+
+[emoji]
+auto_save = true  # 是否自动保存看到的表情包呢
+enable_check = false  # 是否要检查表情包是不是合适的喵
+check_prompt = "符合公序良俗"  # 检查表情包的标准呢
+
+[groups]
+talk_allowed = [755547534]      # 比如：让机器人在群123456和789012里说话
+talk_frequency_down = []   # 比如：在群345678里少说点话
+ban_user_id = []      # 比如：不回复QQ号为111222的人的消息
+
+[others]
+enable_advance_output = true  # 是否要显示更多的运行信息呢
+enable_kuuki_read = true  # 让机器人能够"察言观色"喵
+
+# 模型配置部分的详细说明喵~
+
+
+#下面的模型若使用硅基流动则不需要更改，使用ds官方则改成在.env.prod自己指定的密钥和域名，使用自定义模型则选择定位相似的模型自己填写
+
+[model.llm_reasoning] #推理模型R1，用来理解和思考的喵
+name = "Pro/deepseek-ai/DeepSeek-R1"  # 模型名字
+# name = "Qwen/QwQ-32B"  # 如果想用千问模型，可以把上面那行注释掉，用这个呢
+base_url = "SILICONFLOW_BASE_URL"  # 使用在.env.prod里设置的服务地址
+key = "SILICONFLOW_KEY"  # 使用在.env.prod里设置的密钥
+
+[model.llm_reasoning_minor] #R1蒸馏模型，是个轻量版的推理模型喵
+name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B"
+base_url = "SILICONFLOW_BASE_URL"
+key = "SILICONFLOW_KEY"
+
+[model.llm_normal] #V3模型，用来日常聊天的喵
+name = "Pro/deepseek-ai/DeepSeek-V3"
+base_url = "SILICONFLOW_BASE_URL"
+key = "SILICONFLOW_KEY"
+
+[model.llm_normal_minor] #V2.5模型，是V3的前代版本呢
+name = "deepseek-ai/DeepSeek-V2.5"
+base_url = "SILICONFLOW_BASE_URL"
+key = "SILICONFLOW_KEY"
+
+[model.vlm] #图像识别模型，让机器人能看懂图片喵
+name = "deepseek-ai/deepseek-vl2"
+base_url = "SILICONFLOW_BASE_URL"
+key = "SILICONFLOW_KEY"
+
+[model.embedding] #嵌入模型，帮助机器人理解文本的相似度呢
+name = "BAAI/bge-m3"
+base_url = "SILICONFLOW_BASE_URL"
+key = "SILICONFLOW_KEY"
+
+# 如果选择了llm方式提取主题，就用这个模型配置喵
+[topic.llm_topic]
+name = "Pro/deepseek-ai/DeepSeek-V3"
+base_url = "SILICONFLOW_BASE_URL"
+key = "SILICONFLOW_KEY"
